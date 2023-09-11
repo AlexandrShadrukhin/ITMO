@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: WorkModuls.ReaderOfFile
-Class-Path: jackson-databind-2.14.2.jar jackson-core-2.14.2.jar snakeyam
- l-1.33.jar jackson-datatype-jsr310-2.14.2.jar jackson-annotations-2.14.
- 2.jar jackson-dataformat-yaml-2.14.2.jar
-
