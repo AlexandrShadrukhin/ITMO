@@ -7,11 +7,14 @@ import WorkModules.Task;
 
 import java.io.*;
 import java.net.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Server {
 
     private DatagramSocket socket= new DatagramSocket(8000);
     private InetAddress address= InetAddress.getByName("localhost");
+    private static final Logger logger = Logger.getLogger("logger");
     private byte[] buffer = new byte[4096];
 
     public Collection collection;
@@ -30,6 +33,7 @@ public class Server {
 
     public void runServer() throws IOException, ClassNotFoundException {
         while (true){
+            logger.log(Level.INFO, "Получение информации");
             socket.receive(packet);
             byte[] data= packet.getData();
             ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(data));
@@ -40,11 +44,13 @@ public class Server {
     }
 
     public void processTask(Task task, InetAddress address, Integer port) throws IOException {
+        logger.log(Level.INFO, "Выполнение команды");
         sendAnswer(readerOfCommands.startReadCommands(collection, path, task), address, port);
 
     }
 
     public void sendAnswer(Answer answer, InetAddress address, Integer port) throws IOException {
+        logger.log(Level.INFO, "Отправка ответа");
         ByteArrayOutputStream byteArrayOutputStream= new ByteArrayOutputStream();
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
         objectOutputStream.writeObject(answer);
