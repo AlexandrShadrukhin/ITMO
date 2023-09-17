@@ -1,0 +1,68 @@
+---
+id: 1
+name: "dawdw"
+coordinates:
+  x: 4.0
+  "y": 4.0
+creationDate:
+- 2023
+- 5
+- 15
+- 19
+- 43
+- 13
+- 219865800
+salary: 4
+endDate: null
+position: null
+status: 1
+person: null
+
+---
+id: 2
+name: "awd"
+coordinates:
+  x: 4.0
+  "y": 4.0
+creationDate:
+- 2023
+- 5
+- 16
+- 21
+- 9
+- 43
+- 796293800
+salary: 4
+endDate: null
+position: null
+status: 1
+person: null
+
+---
+id: 0
+name: "awdwa"
+coordinates:
+  x: 4.0
+  "y": 4.0
+creationDate:
+- 2023
+- 5
+- 17
+- 0
+- 59
+- 53
+- 650750500
+salary: 4
+endDate: 1517492730.000000000
+position: "DIRECTOR"
+status: "FIRED"
+person:
+  height: 4.0
+  eyeColor: "YELLOW"
+  hairColor: "YELLOW"
+  nationality: "VATICAN"
+  location:
+    x: 4
+    "y": 4.0
+    z: 4.0
+    name: "awdw"
