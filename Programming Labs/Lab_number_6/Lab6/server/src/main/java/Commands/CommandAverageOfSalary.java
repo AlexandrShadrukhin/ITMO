@@ -18,15 +18,11 @@ public class CommandAverageOfSalary  extends Command{
     @Override
     public Answer commandDo(String key, Task task) throws JsonProcessingException {
         Answer answer= new Answer();
-        ArrayList<Integer> listOfSalary= new ArrayList<>();
-        Float sum= (float) 0;
         try {
             List<Integer> list= new ArrayList<>();
             collection.getVector().forEach(it-> list.add(it.getSalary()));
-            for (int i = 0; i < list.size()-1; i++){
-                sum+= list.get(i);
-            }
-            answer.setResult(String.valueOf(sum/list.size()));
+            double sum = (list.stream().mapToInt(Integer::intValue).sum());
+            answer.setResult(String.valueOf(Double.valueOf(sum / list.size())));
             return answer;
         }
         catch (Exception e){
