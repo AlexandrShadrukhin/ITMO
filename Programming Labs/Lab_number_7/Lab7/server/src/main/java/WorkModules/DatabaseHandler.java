@@ -10,7 +10,7 @@ import java.util.Vector;
 
 public class DatabaseHandler {
     String login;
-    Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/studs", "s367629", "ETeo63o0dZehIqIR");
+    Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/studs", "s367629", "**********");
 
     public DatabaseHandler() throws SQLException {
     }
