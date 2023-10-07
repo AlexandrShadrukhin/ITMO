@@ -30,8 +30,9 @@ function validateY() {
 }
 
 function validateR() {
-    const r = document.getElementById("r_field").value;
+    let r = document.getElementById("r_field").value;
     console.log(r);
+    r = r.replace(",", ".");
     if (r === parseFloat(r).toString()) {
         if (r < 2 || r > 5 || Number.isNaN(r)) {
             return "badNumber";
