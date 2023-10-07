@@ -7,7 +7,7 @@ if (!isset($_SESSION['attempts'])) {
 
 $x = (int)$_POST["x_value"];
 $y = (float)$_POST["y_field"];
-$r = (int)$_POST["r_field"];
+$r = (float)$_POST["r_field"];
 $time = (int)$_POST["time"];
 $shot = "false";
 $currTime = microtime(true) * 1000000;
