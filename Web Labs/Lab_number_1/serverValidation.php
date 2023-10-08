@@ -2,7 +2,7 @@
 function validateInput($x, $y, $r, $time) {
     $errors = array();
 
-    if (!filter_var($x, FILTER_VALIDATE_FLOAT) || $x < -5 || $x > 3) {
+    if (!filter_var($x, FILTER_VALIDATE_INT) || $x < -5 || $x > 3) {
         $errors[] = "Неверное значение X";
     }
 
@@ -14,7 +14,7 @@ function validateInput($x, $y, $r, $time) {
         $errors[] = "Неверное значение R";
     }
 
-    if (!filter_var($time, FILTER_VALIDATE_FLOAT) || $time < 0 || $time > 24) {
+    if (!filter_var($time, FILTER_VALIDATE_INT) || $time < 0 || $time > 24) {
         $errors[] = "Неверное значение Time";
     }
 
