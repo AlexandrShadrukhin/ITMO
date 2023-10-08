@@ -16,6 +16,8 @@ $time1 = microtime(true);
 
 include 'serverValidation.php';
 
+validateInput($x, $y, $r, $time);
+
 $shot = validate($x, $y, $r) ? "true" : "false";
 
 $time2 = microtime(true);
