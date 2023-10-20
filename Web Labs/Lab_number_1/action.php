@@ -21,26 +21,19 @@ validateInput($x, $y, $r, $time);
 $shot = validate($x, $y, $r) ? "true" : "false";
 
 $time2 = microtime(true);
-$leadTime = microtime(true) * 1000000-$currTime;
+$leadTime = microtime(true) * 1000000 - $currTime;
 $leadTime = number_format($leadTime);
+$Current_Time = date("H:i:s d-m-Y", time() + $time * 3600);
 
 $result = array(
     'X' => $x,
     'Y' => $y,
     'R' => $r,
     'Shot' => $shot,
-    'Current time' => date("H:i:s d-m-Y",time()+$time*3600),
-    'Lead time' => $leadTime
+    'Current_time' => $Current_Time,
+    'Lead_time' => $leadTime
 );
-$_SESSION['attempts'][] = $result;
 
-foreach ($_SESSION['attempts'] as $iterator){
-    echo "<tr>";
-    foreach ($iterator as $val){
-        echo "<th>";
-        echo $val;
-        echo "</th>";
-    }
-    echo "</tr>";
-}
+header("Content-Type: application/json");
+echo json_encode($result);
 exit();
