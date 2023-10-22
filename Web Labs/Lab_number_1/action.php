@@ -16,22 +16,20 @@ $time1 = microtime(true);
 
 include 'serverValidation.php';
 
-validateInput($x, $y, $r, $time);
+$isInputValid = validateInput($x, $y, $r, $time);
 
-$shot = validate($x, $y, $r) ? "true" : "false";
-
-$time2 = microtime(true);
-$leadTime = microtime(true) * 1000000 - $currTime;
-$leadTime = number_format($leadTime);
-$Current_Time = date("H:i:s d-m-Y", time() + $time * 3600);
+if (!$isInputValid) {
+    http_response_code(400);
+    die("Ошибка валидации");
+}
 
 $result = array(
     'X' => $x,
     'Y' => $y,
     'R' => $r,
-    'Shot' => $shot,
-    'Current_time' => $Current_Time,
-    'Lead_time' => $leadTime
+    'Shot' => validate($x, $y, $r) ? "true" : "false",
+    'Current_time' => date("H:i:s d-m-Y", time() + $time * 3600),
+    'Lead_time' => number_format(microtime(true) * 1000000 - $currTime)
 );
 
 header("Content-Type: application/json");
