@@ -173,7 +173,6 @@ function handleCanvasClick(event) {
     const xAxes = (xCanvas - canvas.width / 2) / xAxisScale;
     const yAxes = -(yCanvas - canvas.height / 2) / yAxisScale;
 
-    console.log(`Кликнуто на точку (${xAxes}, ${yAxes})`);
     let tempIsSelected = false;
     let tempR;
 
