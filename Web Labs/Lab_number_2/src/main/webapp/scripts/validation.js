@@ -62,7 +62,6 @@ radioButtons.forEach((radioButton) => {
     radioButton.addEventListener('change', function () {
         if (this.checked) {
             const selectedValue = this.value;
-            console.log(`Selected value: ${selectedValue}`);
             r_error.textContent = STRING_EMPTY;
             r_error.className = ERROR_CLASS_ID;
             drawShapesByR(+selectedValue);
