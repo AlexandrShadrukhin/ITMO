@@ -104,7 +104,6 @@
         </div>
     </div>
 </div>
-<script>const ctx = "${pageContext.request.contextPath}";</script>
 <script src="scripts/fix-placeholder.js"></script>
 <script src="scripts/get-intersection.js"></script>
 <script src="scripts/graph.js"></script>
