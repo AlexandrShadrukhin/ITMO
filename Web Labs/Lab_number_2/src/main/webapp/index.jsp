@@ -108,21 +108,6 @@
 <script src="scripts/get-intersection.js"></script>
 <script src="scripts/graph.js"></script>
 <script src="scripts/validation.js"></script>
-<script type="text/javascript">
-    var resultList = [];
-
-    <c:forEach var="result" items="${resultList}">
-    var item = {
-        x: ${result.x},
-        y: ${result.y},
-        r: ${result.r},
-        result: ${result.result},
-        calculationTime: ${result.calculationTime},
-        calculatedAt: "${result.calculatedAt}"
-    };
-    resultList.push(item);
-    drawPoint(${result.x}, ${result.y}, ${result.result});
-    </c:forEach>
-</script>
+<script src="scripts/points.js"></script>
 </body>
 </html>
