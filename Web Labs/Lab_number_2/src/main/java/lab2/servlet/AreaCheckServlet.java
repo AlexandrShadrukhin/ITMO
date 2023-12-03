@@ -61,9 +61,11 @@ public class AreaCheckServlet extends HttpServlet {
         data.setCalculationTime(executionTime);
         data.setCalculatedAt(executedAt);
 
+
         synchronized (resultList) {
             resultList.add(0, data);
         }
+        getServletContext().setAttribute("resultList", resultList);
         GetTemplate.renderView(response, ctx, data);
     }
 
