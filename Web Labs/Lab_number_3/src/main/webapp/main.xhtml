@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+>
+
+<h:head>
+    <title>Web_Lab_3</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <h:outputStylesheet library="styles" name="main.css"/>
+</h:head>
+<h:body>
+    <div id="container" class="margin">
+        <div id="header" class="blured-container round-container margin">
+            <p>Web_Lab_3</p>
+            <p>Шадрухин Александр P3225</p>
+            <p>Вариант 861307</p>
+        </div>
+        <div id="main" class="margin">
+            <div id="choose" class="blured-container round-container margin">
+                <p>Введите значения:</p>
+                <p>Каждое поле должно быть заполнено</p>
+                <h:form id="choose-form">
+                    <div id="x-select-container" class="select-container margin">
+                        <label for="x-select">Выберите X:</label>
+                        <div class="select-input-container">
+                            <div id="x-select" class="select-radio-container">
+                                <p:selectOneRadio value="#{resultBean.x}" layout="lineDirection" immediate="true">
+                                    <f:selectItem itemValue="-4" itemLabel="-4" />
+                                    <f:selectItem itemValue="-3" itemLabel="-3" />
+                                    <f:selectItem itemValue="-2" itemLabel="-2" />
+                                    <f:selectItem itemValue="-1" itemLabel="-1" />
+                                    <f:selectItem itemValue="0" itemLabel="0" />
+                                    <f:selectItem itemValue="1" itemLabel="1" />
+                                    <f:selectItem itemValue="2" itemLabel="2" />
+                                    <f:selectItem itemValue="3" itemLabel="3" />
+                                    <f:selectItem itemValue="4" itemLabel="4" />
+                                    <f:validator validatorId="xValidator"/>
+                                </p:selectOneRadio>
+                            </div>
+                        </div>
+                        <h:message for="x-select" styleClass="error active"/>
+                    </div>
+                    <div id="y-select-container" class="select-container margin">
+                        <label for="y-select-input">Введите Y:</label>
+                        <div class="select-input-container">
+                            <div id="y-select-input" class="select-radio-container">
+                                <h:inputText id="y-select" styleClass="input-select" a:placeholder="В диапазоне [-3; 3]"
+                                             value="#{resultBean.y}" immediate="true">
+                                    <f:validator validatorId="yValidator"/>
+                                </h:inputText>
+                            </div>
+                            <h:message for="y-select" styleClass="error active"/>
+                        </div>
+                    </div>
+                    <div id="r-select-container" class="select-container margin">
+                        <label for="r-select-input">Выберите R:</label>
+                        <div class="select-input-container">
+                            <div id="r-select-input" class="select-radio-container">
+                                <h:selectOneMenu id="r-select" value="#{resultBean.r}"
+                                                 onchange="drawShapesAndPoints(this.value)"
+                                                 validator="rValidator" immediate="true">
+                                    <f:selectItem itemLabel="Выберите R"/>
+                                    <f:selectItem itemValue="1" itemLabel="1"/>
+                                    <f:selectItem itemValue="2" itemLabel="2"/>
+                                    <f:selectItem itemValue="3" itemLabel="3"/>
+                                    <f:selectItem itemValue="4" itemLabel="4"/>
+                                    <f:selectItem itemValue="5" itemLabel="5"/>
+                                    <f:ajax execute="@this" render="@r-select" />
+
+                                </h:selectOneMenu>
+
+                            </div>
+                            <h:message for="r-select" styleClass="error active"/>
+                        </div>
+                    </div>
+                    <div id="submit-container" class="margin">
+                        <h:commandButton type="submit" id="submit-button" value="Подтвердить"
+                                         actionListener="#{areaCheckBean.newResult(resultBean.x,resultBean.y, resultBean.r)}" />
+                    </div>
+                    <div id="redirect-container" class="  fit-content-container">
+                        <h:button id="redirect" outcome="goToIndex" value="Назад на главную"
+                                  styleClass="blured-container round-container"/>
+                    </div>
+                </h:form>
+            </div>
+            <div id="graph-container" class="blured-container round-container margin">
+                <canvas id="graph" width="500px" height="500px"/>
+            </div>
+            <div id="result-table-container" class="blured-container margin">
+                <h:dataTable id="result-table" value="#{areaCheckBean.resultList}" var="resultList">
+                    <h:column>
+                        <f:facet name = "header">X</f:facet>
+                        #{resultList.x}
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">Y</f:facet>
+                        #{resultList.y}
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">R</f:facet>
+                        #{resultList.r}
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">Result</f:facet>
+                        #{resultList.result ? "Попадание" : "Промах"}
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">Executed at</f:facet>
+                        <h:outputText value="#{resultList.executedAt}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">Execution time</f:facet>
+                        #{resultList.executionTime}
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </div>
+    </div>
+    <h:outputScript library="scripts" name="graph.js"/>
+    <h:form id="graphSelect">
+        <h:inputHidden id="graph-x" value="#{graphBean.x}"/>
+        <h:inputHidden id="graph-y" value="#{graphBean.y}" />
+        <p:remoteCommand name="updateBeanValues" update="graph-x graph-y result-table"
+                         action="#{areaCheckBean.newResult(graphBean.x, graphBean.y, resultBean.r)}"/>
+    </h:form>
+    <h:outputScript library="scripts" name="drawResult.js"/>
+</h:body>
+</html>

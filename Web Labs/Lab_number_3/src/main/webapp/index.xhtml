@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/jsf/html ">
+<h:head>
+    <title>Web_Lab_3</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <h:outputStylesheet library="styles" name="index.css"/>
+</h:head>
+<h:body>
+    <div id="header" class="blured-container round-container margin">
+        <p>Web_Lab_3</p>
+        <p>Шадрухин Александр P3225</p>
+        <p>Вариант 861307</p>
+    </div>
+    <div class="wrapper">
+        <div id="time" class="blured-container round-container"></div>
+    </div>
+    <div id="redirect-container" class="  fit-content-container">
+        <h:button id="redirect" outcome="goToMain" value="Start boobs"
+                  styleClass="boobs-button blured-container round-container"/>
+    </div>
+    <h:outputScript library="scripts" name="time.js"/>
+</h:body>
+</html>
