@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Named
 @ApplicationScoped
 @Entity
-@Table(name = "results", schema = "s367629")
+@Table(name = "results", schema = "s******")
 public class ResultBean implements Serializable {
 
     @Id
