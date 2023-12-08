@@ -13,7 +13,7 @@ public class HibernateUtils {
     static {
         try {
             Properties info = new Properties();
-            info.load(HibernateUtils.class.getClassLoader().getResourceAsStream("/db.cfg"));
+            info.load(HibernateUtils.class.getClassLoader().getResourceAsStream("/dataBase.cfg"));
             factory = new Configuration().configure()
                     .setProperty(AvailableSettings.USER,
                             info.getProperty("user"))
